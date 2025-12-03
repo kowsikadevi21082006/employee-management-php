@@ -1,54 +1,187 @@
-# Employee Management (Vanilla PHP + MySQL)
+🌟 Employee Management System (PHP + MySQL)
 
-Minimal employee management app built with plain PHP and MySQL using `mysqli` prepared statements. Intended as a simple, secure starting point for local development (XAMPP).
+A complete LAMP stack Employee Management Web Application built using PHP, MySQL, Apache, HTML, CSS, JavaScript.
+Created for learning full-stack fundamentals, portfolio showcasing, and real-world job readiness.
 
-Prerequisites
-- XAMPP (Apache + MySQL)
-- PHP 8.x recommended (works with PHP 7.4+, but PHP 8+ is preferred)
+🚀 Features
+🔐 Authentication
 
-Setup
+Login page
 
-1. Copy the `employee_mgmt` folder into your XAMPP `htdocs` directory (typically `C:\xampp\htdocs`).
-2. Start Apache and MySQL using the XAMPP control panel.
-3. Create the database and table. Run the SQL in `schema.sql` (or via phpMyAdmin / mysql client):
+Signup page (optional)
 
-```sql
-CREATE DATABASE IF NOT EXISTS `employee_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `employee_db`;
+Session-based authentication
 
-CREATE TABLE IF NOT EXISTS `employees` (
-  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Protected routes
+
+👨‍💼 Employee Management (CRUD)
+
+Add Employee
+
+Edit Employee
+
+Delete Employee (POST + CSRF protected)
+
+Search Employees by name, email, position
+
+Pagination
+
+Form validation
+
+🎨 UI/UX
+
+Modern animated landing page
+
+Poppins font
+
+Responsive layout
+
+Clean dashboard design
+
+Polished table layout
+
+Styled forms and buttons
+
+Flash success/error messages
+
+🛠 Backend Logic
+
+Pure PHP (No frameworks)
+
+mysqli prepared statements
+
+Secure delete flow (POST only)
+
+XSS protection via escaping
+
+Centralized config + URL helper
+
+📂 Project Structure
+employee_mgmt/
+│
+├── landing.php
+├── index.php
+├── create.php
+├── edit.php
+├── delete.php
+├── db.php
+├── config.php
+│
+├── auth/
+│   ├── login.php
+│   └── signup.php
+│
+├── partials/
+│   ├── header.php
+│   └── footer.php
+│
+├── public/
+│   ├── style.css
+│   ├── app.js
+│   └── img/
+│
+├── .htaccess
+└── README.md
+
+🗄️ Database Structure
+
+Database: employee_db
+Table: employees
+
+CREATE TABLE `employees` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(100) NOT NULL,
   `email` VARCHAR(120) NOT NULL UNIQUE,
   `position` VARCHAR(80) NOT NULL,
-  `salary` DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-  `joined_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `salary` DECIMAL(10,2) NOT NULL,
+  `joined_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-```
 
-4. The default DB connection in `db.php` uses `mysqli('localhost','root','', 'employee_db')`. If your MySQL password/user differs, update `db.php`.
-5. Open the app in your browser: `http://localhost/employee_mgmt/`.
+🔧 Tech Stack
+Layer	Technology
+Frontend	HTML5, CSS3, JavaScript, Poppins Font
+Backend	PHP 8+, mysqli
+Database	MySQL
+Server	Apache (XAMPP / LAMP)
+Security	CSRF Token, Prepared Statements, Sessions
+⚙️ How to Run Locally
+1️⃣ Install XAMPP
 
-Features
-- CRUD for employees (Create, Read, Update, Delete)
-- Server-side validation (required fields, valid email, salary numeric >= 0)
-- Search by name, email, or position (`q` GET parameter)
-- Pagination (10 results per page)
-- All DB access uses `mysqli` prepared statements
-- Output escaped with `htmlspecialchars` to mitigate XSS
-- CSRF protection for delete operations using a session token
+Download: https://www.apachefriends.org/
 
-Notes & Security
-- This project is intended for local development/demo. For production hardening:
-  - Serve over HTTPS
-  - Harden session cookies (`session.cookie_secure`, `session.cookie_httponly`, `session.cookie_samesite`)
-  - Use proper error logging (do not echo DB errors to users)
-  - Apply stricter input validation and rate-limiting where appropriate
+Start:
 
-Screenshots (placeholders)
-- screenshots/list.png
-- screenshots/create.png
-- screenshots/edit.png
+Apache
 
-If you want, I can add a `schema.sql` file to the project root containing the CREATE statements and sample data.
-"# employee-management-php" 
+MySQL
+
+2️⃣ Move project to htdocs
+
+Place folder in:
+
+C:\xampp\htdocs\employee_mgmt
+
+3️⃣ Create database
+
+Open phpMyAdmin:
+
+http://localhost/phpmyadmin/
+
+
+Create:
+
+employee_db
+
+
+Import your SQL file.
+
+4️⃣ Update db.php
+$DB_HOST = "localhost";
+$DB_USER = "root";
+$DB_PASS = "";
+$DB_NAME = "employee_db";
+
+5️⃣ Run app
+http://localhost/employee_mgmt/
+
+🧪 Manual Test Cases
+✔ Add Employee
+
+Go to Add Employee → fill form → Save → appears in list.
+
+✔ Edit Employee
+
+Click Edit → update fields → Save → list refreshed.
+
+✔ Delete Employee
+
+Click Delete → confirm popup → record removed.
+
+✔ Search
+
+Enter keyword → search results filtered.
+
+✔ Pagination
+
+More than 10 records shows page links.
+
+🛡 Security Features
+
+Prepared SQL statements everywhere
+
+Proper output escaping
+
+Session-based access protection
+
+CSRF token validation for DELETE
+
+POST-only deletion
+
+Unique email validation
+
+📸 Screenshots (Add your own)
+📷 Landing Page  
+📷 Dashboard  
+📷 Add Employee  
+📷 Edit Employee  
+📷 Delete Confirmation  
