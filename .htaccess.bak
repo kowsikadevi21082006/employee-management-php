@@ -1,0 +1,14 @@
+# Basic .htaccess for local XAMPP instance
+Options +FollowSymLinks
+AllowOverride All
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    # Disable directory listing and enable rewrite engine for future use
+    Options -Indexes
+    RewriteEngine On
+    # No rewrite rules now; files are served directly
+</IfModule>
+
+# Prevent directory browsing
+IndexIgnore *
